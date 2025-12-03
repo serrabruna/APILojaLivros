@@ -16,4 +16,52 @@ export class LivroModel {
         this.editora = editora;
         this.anoPublicacao = anoPublicacao;
     }
+
+    //GETTERS
+
+    getId(): number{
+        return this.id;
+    }
+
+    getIsbn(): string{
+        return this.isbn;
+    }
+
+    getTitulo(): string{
+        return this.titulo;
+    }
+
+    getAutor(): string{
+        return this.autor;
+    }
+
+    getEditora(): string{
+        return this.editora;
+    }
+
+    getAnoPublicacao(): number{
+        return this.anoPublicacao;
+    }
+
+    //SETTERS
+
+    setIsbn(isbn: string): void{
+        this.isbn = isbn;
+    }
+
+    setTitulo(titulo: string): void{
+        this.titulo = titulo;
+    }
+
+    setAutor(autor: string): void{
+        this.autor = autor;
+    }
+
+    seteditora(editora: string): void{
+        this.editora = editora;
+    }
+
+    setAnoPublicacao(anoPublicacao: number){
+        this.anoPublicacao = anoPublicacao;
+    }
 }
