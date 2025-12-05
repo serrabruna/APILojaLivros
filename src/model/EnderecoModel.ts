@@ -1,9 +1,8 @@
 export class EnderecoModel{
-    
     static proximoId: number = 1;
 
     id: number;
-    usuarioId: number;
+    usuario_id: number;
     cep: string;
     rua: string;
     numero: string;
@@ -11,9 +10,9 @@ export class EnderecoModel{
     cidade: string;
     estado: string;
 
-    constructor(usuarioId: number, cep: string, rua: string, numero: string, complemento: string, cidade: string, estado: string){
+    constructor(usuario_id: number, cep: string, rua: string, numero: string, complemento: string, cidade: string, estado: string){
         this.id = EnderecoModel.proximoId++;
-        this.usuarioId = usuarioId;
+        this.usuario_id = usuario_id;
         this.cep = cep;
         this.rua = rua;
         this.numero = numero;
@@ -28,8 +27,8 @@ export class EnderecoModel{
         return this.id;
     }
 
-    getUsuarioid(): number{
-        return this.usuarioId;
+    getUsuario_Id(): number{
+        return this.usuario_id;
     }
 
     getCep(): string{
@@ -58,8 +57,8 @@ export class EnderecoModel{
 
     //SETTERS
 
-    setUsuarioId(usuarioId: number){
-        this.usuarioId = usuarioId;
+    setUsuarioId(usuario_id: number){
+        this.usuario_id = usuario_id;
     }
 
     setCep(cep: string){

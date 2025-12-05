@@ -3,19 +3,19 @@ export class PedidoModel{
     static proximoId: number = 1;
 
     id: number;
-    usuarioId: number;
-    enderecoEntrega: string;
-    dataPedido: Date;
-    valorTotal: number;
-    statusPedido: "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO";
+    usuario_id: number;
+    endereco_entrega_id: number;
+    data_pedido: Date;
+    valor_total: number;
+    status_pedido: "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO";
 
-    constructor(usuarioId: number, enderecoEntrega: string, dataPedido: Date, valorTotal: number, statusPedido: "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO"){
+    constructor(usuario_id: number, endereco_entrega_id: number, data_pedido: Date, valor_total: number, status_pedido: "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO"){
         this.id = PedidoModel.proximoId++;
-        this.usuarioId = usuarioId;
-        this.enderecoEntrega = enderecoEntrega;
-        this.dataPedido = dataPedido;
-        this.valorTotal = valorTotal;
-        this.statusPedido = statusPedido;
+        this.usuario_id = usuario_id;
+        this.endereco_entrega_id = endereco_entrega_id;
+        this.data_pedido = data_pedido;
+        this.valor_total = valor_total;
+        this.status_pedido = status_pedido;
     }
 
     //GETTERS
@@ -24,45 +24,45 @@ export class PedidoModel{
         return this.id;
     }
 
-    public getUsuarioId(): number{
-        return this.usuarioId;
+    public getUsuario_Id(): number{
+        return this.usuario_id;
     }
 
-    public getEnderecoEntrega(): string{
-        return this.enderecoEntrega;
+    public getEndereco_Entrega_Id(): number{
+        return this.endereco_entrega_id;
     }
 
-    public getDataPedido(): Date{
-        return this.dataPedido;
+    public getData_Pedido(): Date{
+        return this.data_pedido;
     }
 
-    public getValorTotal(): number{
-        return this.valorTotal;
+    public getValor_Total(): number{
+        return this.valor_total;
     }
 
-    public getStatusPedido(): "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO"{
-        return this.statusPedido;
+    public getStatus_Pedido(): "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO"{
+        return this.status_pedido;
     }
 
     //SETTERS
 
-    public setUsuarioId(usuarioId: number): void{
-        this.usuarioId = usuarioId;
+    public setUsuario_Id(usuario_id: number): void{
+        this.usuario_id = usuario_id;
     }
 
-    public setEnderecoEntrega(enderecoEntrega: string): void{
-        this.enderecoEntrega = enderecoEntrega;
+    public setEndereco_Entrega_Id(endereco_entrega_id: number): void{
+        this.endereco_entrega_id = endereco_entrega_id;
     }
 
-    public setDataPedido(dataPedido: Date): void{
-        this.dataPedido = dataPedido;
+    public setData_Pedido(dataPedido: Date): void{
+        this.data_pedido = dataPedido;
     }
 
-    public setValorTotal(valorTotal: number): void{
-        this.valorTotal = valorTotal;
+    public setValor_Total(valor_total: number): void{
+        this.valor_total = valor_total;
     }
 
-    public setStatusPedido(statusPedido: "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO"): void{
-        this.statusPedido = statusPedido;
+    public setStatus_Pedido(status_pedido: "PENDENTE" | "PAGO" | "ENVIADO" | "CANCELADO"): void{
+        this.status_pedido = status_pedido;
     }
 }
