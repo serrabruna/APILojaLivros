@@ -22,7 +22,8 @@ export class LivroRepository{
                 titulo VARCHAR(255) NOT NULL,
                 autor VARCHAR(255) NOT NULL,
                 editora VARCHAR(255) NOT NULL,
-                anoPublicação INT NOT NULL
+                anoPublicação INT NOT NULL, 
+                promocao I
                 )`
 
         try{

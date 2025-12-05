@@ -1,19 +1,18 @@
 export class CarrinhoModel{
-
     static proximoId: number = 1;
 
     id: number;
-    idUsuario: number;
-    idLivro: number;
+    usuario_id: number;
+    livro_id: number;
     quantidade: number;
-    dataAdicao: Date;
+    data_adicao: Date;
 
-    constructor(idUsuario: number, idLivro: number, quantidade: number, dataAdicao: Date){
+    constructor(usuario_id: number, livro_id: number, quantidade: number, data_adicao: Date){
         this.id = CarrinhoModel.proximoId++;
-        this.idUsuario = idUsuario;
-        this.idLivro = idLivro;
+        this.usuario_id = usuario_id;
+        this.livro_id = livro_id;
         this.quantidade = quantidade;
-        this.dataAdicao = dataAdicao;
+        this.data_adicao = data_adicao;
     }
 
     //GETTERS
@@ -22,37 +21,37 @@ export class CarrinhoModel{
         return this.id;
     }
 
-    getIdUsuario(): number{
-        return this.idUsuario;
+    getUsuario_Id(): number{
+        return this.usuario_id;
     }
 
-    getIdLivro(): number{
-        return this.idLivro;
+    getLivro_Id(): number{
+        return this.livro_id;
     }
 
     getQuantidade(): number{
         return this.quantidade;
     }
 
-    getDataAdicao(): Date{
-        return this.dataAdicao;
+    getData_Adicao(): Date{
+        return this.data_adicao;
     }
 
     //SETTERS
 
-    setIdUsuario(idUsuario: number){
-        this.idUsuario = idUsuario;
+    setUsuario(usuario_id: number){
+        this.usuario_id = usuario_id;
     }
 
-    setIdLivro(idLivro: number){
-        this.idLivro = idLivro;
+    setIdLivro(livro_id: number){
+        this.livro_id = livro_id;
     }
 
     setQuantidade(quantidade: number){
         this.quantidade = quantidade;
     }
 
-    setDataAdicao(dataAdicao: Date){
-        this.dataAdicao = dataAdicao;
+    setData_Adicao(data_adicao: Date){
+        this.data_adicao = data_adicao;
     }
 }

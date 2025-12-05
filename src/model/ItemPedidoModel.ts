@@ -1,19 +1,18 @@
 export class ItemPedidoModel{
-
     static proximoId: number = 1;
 
     id: number;
-    idPedido: number;
-    idLivro: number;
+    pedido_id: number;
+    livro_id: number;
     quantidade: number;
-    precoUnitario: number;
+    preco_unitario_pago: number;
 
-    constructor(idPedido: number, idLivro: number, quantidade: number, precoUnitario: number){
+    constructor(pedido_id: number, livro_id: number, quantidade: number, preco_unitario_pago: number){
         this.id = ItemPedidoModel.proximoId++;
-        this.idPedido = idPedido;
-        this.idLivro = idLivro;
+        this.pedido_id = pedido_id;
+        this.livro_id = livro_id;
         this.quantidade = quantidade;
-        this.precoUnitario = precoUnitario;
+        this.preco_unitario_pago = preco_unitario_pago;
     }
 
     //GETTERS
@@ -22,37 +21,37 @@ export class ItemPedidoModel{
         return this.id;
     }
 
-    getIdPedido(): number{
-        return this.idPedido;
+    getPedido_Id(): number{
+        return this.pedido_id;
     }
 
-    getIdLivro(): number{
-        return this.idLivro;
+    getLivro_Id(): number{
+        return this.livro_id;
     }
 
     getQuantidade(): number{
         return this.quantidade
     }
 
-    getPrecoUnitario(): number{
-        return this.precoUnitario;
+    getPreco_Unitario_Pago(): number{
+        return this.preco_unitario_pago;
     }
 
     //SETTERS
 
-    setIdPedido(idPedido: number): void{
-        this.idPedido = idPedido;
+    setPedido_Id(pedido_id: number): void{
+        this.pedido_id = pedido_id;
     }
 
-    setIdLivro(idLivro: number){
-        this.idLivro = idLivro;
+    setLivro_Id(livro_id: number){
+        this.livro_id = this.livro_id;
     }
 
     setQuantidade(quantidade: number){
         this.quantidade = quantidade;
     }
 
-    setPrecoUnitario(precoUnitario: number){
-        this.precoUnitario = precoUnitario;
+    setPreco_Unitario_Pago(preco_unitario_pago: number){
+        this.preco_unitario_pago = preco_unitario_pago;
     }
 }
