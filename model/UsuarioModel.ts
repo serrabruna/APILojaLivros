@@ -1,4 +1,4 @@
-class UsuarioModel{
+export class UsuarioModel{
 
     static proximoId: number = 1;
 

@@ -1,4 +1,4 @@
-class EnderecoModel{
+export class EnderecoModel{
     
     static proximoId: number = 1;
 

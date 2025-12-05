@@ -1,4 +1,4 @@
-class PedidoModel{
+export class PedidoModel{
 
     static proximoId: number = 1;
 

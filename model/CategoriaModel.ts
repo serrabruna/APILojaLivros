@@ -1,4 +1,4 @@
-class CategoriaModel{
+export class CategoriaModel{
 
     static proximoId: number = 1;
 

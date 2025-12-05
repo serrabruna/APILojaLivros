@@ -1,4 +1,4 @@
-class CarrinhoModel{
+export class CarrinhoModel{
 
     static proximoId: number = 1;
 
