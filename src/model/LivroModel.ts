@@ -12,9 +12,9 @@ export class LivroModel {
     imageURL: string;
     editora: string;
     data_publicacao: Date;
-    promocao: boolean = false;
+    promocao? : boolean = false;
 
-    constructor(categoria_id: number, titulo: string, autor: string, isbn: string, preco: number, estoque: number, sinopse: string, imageURL: string, editora: string, data_publicacao: Date) {
+    constructor(categoria_id: number, titulo: string, autor: string, isbn: string, preco: number, estoque: number, sinopse: string, imageURL: string, editora: string, data_publicacao: Date, promocao?: boolean) {
         this.id = LivroModel.proximoId++;
         this.categoria_id = categoria_id;
         this.titulo = titulo;
@@ -75,7 +75,7 @@ export class LivroModel {
     }
 
     getPromocao(): boolean{
-        return this.promocao;
+        return this.promocao ?? false;
     }
 
     //SETTERS

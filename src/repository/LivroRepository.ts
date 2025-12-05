@@ -21,14 +21,14 @@ export class LivroRepository{
                 categoria_id INT NOT NULL
                 titulo VARCHAR(255) NOT NULL,
                 isbn VARCHAR(13) NOT NULL UNIQUE,
-                preco INT(10,2) NOT NULL,
+                preco DECIMAL(10,2) NOT NULL,
                 estoque INT NOT NULL,
                 sinopse TEXT,
                 imageURL VARCHAR(255),
                 autor VARCHAR(255) NOT NULL,
                 editora VARCHAR(255) NOT NULL,
-                data_publicação DATE,
-                promocao BOOLEAN
+                data_publicacao DATE,
+                promocao BOOLEAN DEFAULT FALSE
                 )`
 
         try{
@@ -41,13 +41,13 @@ export class LivroRepository{
 
     async insereLivro(livro: LivroModel): Promise<LivroModel>{
         const resultado = await executarComandoSQL(
-            "INSERT INTO lectus_bd.Livro (categoria_id, titulo, isbn, preco, estoque, sinopse, imageURL, autor, editora, data_publicacao) values (?,?,?,?,?)",
+            "INSERT INTO lectus_bd.Livro (categoria_id, titulo, isbn, preco, estoque, sinopse, imageURL, autor, editora, data_publicacao, promocao) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 livro.isbn, 
                 livro.titulo,
                 livro.autor,
                 livro.editora,
-                livro.anoPublicacao
+                livro.data_publicacao
             ]);
         
             console.log("Livro criado com Sucesso: ", resultado);
