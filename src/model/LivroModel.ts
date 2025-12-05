@@ -7,6 +7,7 @@ export class LivroModel {
     autor: string;
     editora: string;
     anoPublicacao: number;
+    promocao: boolean = false;
 
     constructor(isbn: string, titulo: string, autor: string, editora: string, anoPublicacao: number) {
         this.id = LivroModel.proximoId++;
@@ -43,6 +44,10 @@ export class LivroModel {
         return this.anoPublicacao;
     }
 
+    getPromocao(): boolean{
+        return this.promocao;
+    }
+
     //SETTERS
 
     setIsbn(isbn: string): void{
@@ -63,5 +68,9 @@ export class LivroModel {
 
     setAnoPublicacao(anoPublicacao: number){
         this.anoPublicacao = anoPublicacao;
+    }
+
+    setPromocao(promocao: boolean){
+        this.promocao = promocao;
     }
 }

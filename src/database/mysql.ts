@@ -6,7 +6,7 @@ const dbConfig = {
     port: 3306,
     user: 'root',
     password: 'root',
-    database: 'biblioteca'
+    database: 'lectus_db'
 };
 
 const mysqlConnection = mysql.createConnection(dbConfig);
@@ -20,7 +20,8 @@ mysqlConnection.then(() => {
 
 export async function executarComandoSQL(query: string, valores: any[]): Promise<any>{
     try {
-        const resultado = await mysqlConnection.query(query, valores);
+        const connection = await mysqlConnection;
+        const resultado = await connection.query(query, valores);
         return resultado;
     } catch(err) {
         console.error('Erro ao executar a query. ', err);
