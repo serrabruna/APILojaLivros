@@ -43,21 +43,31 @@ export class LivroRepository{
         const resultado = await executarComandoSQL(
             "INSERT INTO lectus_bd.Livro (categoria_id, titulo, isbn, preco, estoque, sinopse, imageURL, autor, editora, data_publicacao) values (?,?,?,?,?)",
             [
-                livro.isbn, 
+                livro.categoria_id, 
                 livro.titulo,
+                livro.isbn,
+                livro.preco,
+                livro.estoque,
+                livro.sinopse,
+                livro.imageURL,
                 livro.autor,
                 livro.editora,
-                livro.anoPublicacao
+                livro.data_publicacao
             ]);
         
             console.log("Livro criado com Sucesso: ", resultado);
 
         return new LivroModel(
-            livro.isbn,
+            livro.categoria_id,
             livro.titulo,
+            livro.isbn,
+            livro.preco,
+            livro.estoque,
+            livro.sinopse,
+            livro.imageURL,
             livro.autor,
             livro.editora,
-            livro.anoPublicacao
+            livro.data_publicacao
         );
     }
     
@@ -65,37 +75,42 @@ export class LivroRepository{
         return isbn.toString().length === 13;
     }
 
-    async filtraLivroPorISBN(isbn: string): Promise<LivroModel | null>{
-        const resultado = await executarComandoSQL("SELECT * FROM lectus_bd.Livro WHERE isbn = ?", [isbn]);
+    async filtraLivroPorId(id: number): Promise<LivroModel | null>{
+        const resultado = await executarComandoSQL("SELECT * FROM lectus_bd.Livro WHERE id = ?", [id]);
         if(resultado && resultado.length > 0) {
             const user = resultado[0];
             return new LivroModel(
-                user.isbn,
+                user.categoria_id,
                 user.titulo,
+                user.isbn,
+                user.preco,
+                user.estoque,
+                user.sinopse,
+                user.imageURL,
                 user.autor,
                 user.editora,
-                user.anoPublicacao
+                user.data_publicacao
             );
         }
         return null;
     }
 
-    async validacaoLivro(isbn: string): Promise<boolean> {
-        const livro = await this.filtraLivroPorISBN(isbn);
+    async validacaoLivro(id: number): Promise<boolean> {
+        const livro = await this.filtraLivroPorId(id);
         return livro !== null;
     }
 
-    async removeLivroPorISBN(isbn: string): Promise<LivroModel | null>{
-       const livro = await this.filtraLivroPorISBN(isbn);
+    async removeLivroPorId(id: number): Promise<LivroModel | null>{
+       const livro = await this.filtraLivroPorId(id);
        if(!livro){
             return null;
        }
 
-       await executarComandoSQL("DELETE FROM lectus_bd.Livro where isbn = ?", [isbn]);
+       await executarComandoSQL("DELETE FROM lectus_bd.Livro where id = ?", [id]);
        return livro;
     }
 
-    async atualizarLivroPorISBN(isbn: string, novosDados: any): Promise<LivroModel | null>{
+    async atualizarLivroPorId(id: number, novosDados: any): Promise<LivroModel | null>{
         const campos: string[] = [];
         const valores: any[] = [];
 
@@ -120,16 +135,16 @@ export class LivroRepository{
         }
 
         if (campos.length === 0) {
-            return await this.filtraLivroPorISBN(isbn);
+            return await this.filtraLivroPorId(id);
         }
 
-        const sql = `UPDATE lectus_bd.Livro SET ${campos.join(", ")} WHERE isbn = ?`;
-        valores.push(isbn);
+        const sql = `UPDATE lectus_bd.Livro SET ${campos.join(", ")} WHERE id = ?`;
+        valores.push(id);
 
         const resultado = await executarComandoSQL(sql, valores);
         console.log(resultado);
 
-        return await this.filtraLivroPorISBN(isbn);
+        return await this.filtraLivroPorId(id);
     }
 
     async listarLivros(): Promise<LivroModel[]>{
@@ -139,11 +154,16 @@ export class LivroRepository{
             for(let i = 0; i < resultado.length; i++){
                 const user = resultado[i];
                 livros.push(new LivroModel(
+                    user.categoria_id,
                     user.titulo,
                     user.isbn,
+                    user.preco,
+                    user.estoque,
+                    user.sinopse,
+                    user.imageURL,
                     user.autor,
                     user.editora,
-                    user.anoPublicacao
+                    user.data_publicacao
                 ));
             }
         }
