@@ -18,18 +18,18 @@ export class LivroRepository{
     private async criarTable(){
         const query = `CREATE TABLE IF NOT EXISTS lectus_bd.Livro(
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                categoria_id INT NOT NULL
+                categoria_id INT NOT NULL,
                 titulo VARCHAR(255) NOT NULL,
+                autor VARCHAR(255) NOT NULL,                
                 isbn VARCHAR(13) NOT NULL UNIQUE,
                 preco DECIMAL(10,2) NOT NULL,
                 estoque INT NOT NULL,
                 sinopse TEXT,
                 imageURL VARCHAR(255),
-                autor VARCHAR(255) NOT NULL,
                 editora VARCHAR(255) NOT NULL,
                 data_publicacao DATE,
                 promocao BOOLEAN DEFAULT FALSE
-                )`
+                )`;
 
         try{
             const resultado = await executarComandoSQL(query, []);
@@ -41,23 +41,35 @@ export class LivroRepository{
 
     async insereLivro(livro: LivroModel): Promise<LivroModel>{
         const resultado = await executarComandoSQL(
-            "INSERT INTO lectus_bd.Livro (categoria_id, titulo, isbn, preco, estoque, sinopse, imageURL, autor, editora, data_publicacao, promocao) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO lectus_bd.Livro (categoria_id, titulo, autor, isbn, preco, estoque, sinopse, imageURL, editora, data_publicacao, promocao) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
-                livro.isbn, 
+                livro.categoria_id,
                 livro.titulo,
-                livro.autor,
+                livro.autor,                
+                livro.isbn,
+                livro.preco,
+                livro.estoque,
+                livro.sinopse,
+                livro.imageURL, 
                 livro.editora,
-                livro.data_publicacao
+                livro.data_publicacao,
+                livro.promocao
             ]);
         
             console.log("Livro criado com Sucesso: ", resultado);
 
         return new LivroModel(
-            livro.isbn,
-            livro.titulo,
-            livro.autor,
-            livro.editora,
-            livro.anoPublicacao
+                livro.categoria_id,
+                livro.titulo,
+                livro.autor,                
+                livro.isbn,
+                livro.preco,
+                livro.estoque,
+                livro.sinopse,
+                livro.imageURL, 
+                livro.editora,
+                livro.data_publicacao,
+                livro.promocao
         );
     }
     
@@ -70,11 +82,38 @@ export class LivroRepository{
         if(resultado && resultado.length > 0) {
             const user = resultado[0];
             return new LivroModel(
-                user.isbn,
+                user.categoria_id,
                 user.titulo,
-                user.autor,
+                user.autor,                
+                user.isbn,
+                user.preco,
+                user.estoque,
+                user.sinopse,
+                user.imageURL, 
                 user.editora,
-                user.anoPublicacao
+                new Date (user.data_publicacao),
+                user.promocao
+            );
+        }
+        return null;
+    }
+
+    async filtraLivroPorId(id: number): Promise<LivroModel | null>{
+        const resultado = await executarComandoSQL("SELECT * FROM lectus_bd.Livro WHERE id = ?", [id]);
+        if(resultado && resultado.length > 0) {
+            const user = resultado[0];
+            return new LivroModel(
+                user.categoria_id,
+                user.titulo,
+                user.autor,                
+                user.isbn,
+                user.preco,
+                user.estoque,
+                user.sinopse,
+                user.imageURL, 
+                user.editora,
+                new Date (user.data_publicacao),
+                user.promocao
             );
         }
         return null;
@@ -99,6 +138,11 @@ export class LivroRepository{
         const campos: string[] = [];
         const valores: any[] = [];
 
+        if(novosDados.categoria_id){
+            campos.push("categoria_id = ?");
+            valores.push(novosDados.categoria_id);
+        }
+
         if(novosDados.titulo){
             campos.push("titulo = ?");
             valores.push(novosDados.titulo);
@@ -109,14 +153,39 @@ export class LivroRepository{
             valores.push(novosDados.autor);
         }
 
+        if(novosDados.preco){
+            campos.push("preco = ?");
+            valores.push(novosDados.preco);
+        }
+
+        if(novosDados.estoque){
+            campos.push("estoque = ?");
+            valores.push(novosDados.estoque);
+        }
+
+        if(novosDados.sinopse){
+            campos.push("sinopse = ?");
+            valores.push(novosDados.sinopse);
+        }
+
+        if(novosDados.imageURL){
+            campos.push("imageURL = ?");
+            valores.push(novosDados.imageURL);
+        }
+
         if(novosDados.editora){
             campos.push("editora = ?");
             valores.push(novosDados.editora);
         }
 
-        if(novosDados.anoPublicacao){
-            campos.push("anoPublicacao = ?");
-            valores.push(novosDados.edicao);
+        if(novosDados.data_publicacao){
+            campos.push("data_publicacao = ?");
+            valores.push(novosDados.data_publicacao);
+        }
+
+        if(novosDados.promocao){
+            campos.push("promocao = ?");
+            valores.push(novosDados.promocao);
         }
 
         if (campos.length === 0) {
@@ -139,11 +208,17 @@ export class LivroRepository{
             for(let i = 0; i < resultado.length; i++){
                 const user = resultado[i];
                 livros.push(new LivroModel(
+                    user.categoria_id,
                     user.titulo,
+                    user.autor,                
                     user.isbn,
-                    user.autor,
+                    user.preco,
+                    user.estoque,
+                    user.sinopse,
+                    user.imageURL, 
                     user.editora,
-                    user.anoPublicacao
+                    new Date (user.data_publicacao),
+                    Boolean(user.promocao)
                 ));
             }
         }
