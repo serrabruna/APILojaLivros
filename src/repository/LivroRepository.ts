@@ -40,34 +40,47 @@ export class LivroRepository{
     }
 
     async insereLivro(livro: LivroModel): Promise<LivroModel>{
+
+        //Validação Adicionada: Verificando se já há um livro com o mesmo título e ISBN no sistema
+        const resultadoExistente = await executarComandoSQL(
+            "SELECT * FROM Livro WHERE titulo = ? AND isbn = ?",
+            [livro.titulo, livro.isbn]
+        );
+
+        if (resultadoExistente && resultadoExistente.length > 0) {
+            throw new Error("Livro com este título e ISBN já existe!");
+        }
+
         const resultado = await executarComandoSQL(
             "INSERT INTO lectus_bd.Livro (categoria_id, titulo, autor, isbn, preco, estoque, sinopse, imageURL, editora, data_publicacao, promocao) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 livro.categoria_id, 
                 livro.titulo,
+                livro.autor,
                 livro.isbn,
                 livro.preco,
                 livro.estoque,
                 livro.sinopse,
                 livro.imageURL,
-                livro.autor,
                 livro.editora,
-                livro.data_publicacao
+                livro.data_publicacao,
+                livro.promocao
             ]);
         
             console.log("Livro criado com Sucesso: ", resultado);
 
         return new LivroModel(
-            livro.categoria_id,
-            livro.titulo,
-            livro.isbn,
-            livro.preco,
-            livro.estoque,
-            livro.sinopse,
-            livro.imageURL,
-            livro.autor,
-            livro.editora,
-            livro.data_publicacao
+            livro.categoria_id, 
+                livro.titulo,
+                livro.autor,
+                livro.isbn,
+                livro.preco,
+                livro.estoque,
+                livro.sinopse,
+                livro.imageURL,
+                livro.editora,
+                livro.data_publicacao,
+                livro.promocao
         );
     }
     
@@ -203,7 +216,8 @@ export class LivroRepository{
     }
 
     async listarLivros(): Promise<LivroModel[]>{
-        const resultado = await executarComandoSQL("SELECT * FROM lectus_bd.Livro", []);
+        //Validação Adicionada: Retornando os livros por ordem alfabética e apenas se seu estoque for maior que zero.
+        const resultado = await executarComandoSQL("SELECT * FROM lectus_bd.Livro WHERE estoque > 0 ORDER BY titulo ASC", []);
         const livros: LivroModel[] = [];
         if(resultado && resultado.length > 0){
             for(let i = 0; i < resultado.length; i++){
@@ -224,4 +238,11 @@ export class LivroRepository{
         }
         return livros;
     }
+
+
+    //Implementar função validar categoria do livro pelo id da Categoria
+    /*async validacaoLCategoriaId(categoria_id: number): Promise<boolean> {
+        const livro = await this.filtraLivroPorId(id);
+        return livro !== null;
+    }*/
 }
