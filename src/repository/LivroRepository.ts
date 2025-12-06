@@ -18,18 +18,18 @@ export class LivroRepository{
     private async criarTable(){
         const query = `CREATE TABLE IF NOT EXISTS lectus_bd.Livro(
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                categoria_id INT NOT NULL
+                categoria_id INT NOT NULL,
                 titulo VARCHAR(255) NOT NULL,
+                autor VARCHAR(255) NOT NULL,                
                 isbn VARCHAR(13) NOT NULL UNIQUE,
-                preco INT(10,2) NOT NULL,
+                preco DECIMAL(10,2) NOT NULL,
                 estoque INT NOT NULL,
                 sinopse TEXT,
                 imageURL VARCHAR(255),
-                autor VARCHAR(255) NOT NULL,
                 editora VARCHAR(255) NOT NULL,
-                data_publicação DATE,
-                promocao BOOLEAN
-                )`
+                data_publicacao DATE,
+                promocao BOOLEAN DEFAULT FALSE
+                )`;
 
         try{
             const resultado = await executarComandoSQL(query, []);
@@ -41,7 +41,7 @@ export class LivroRepository{
 
     async insereLivro(livro: LivroModel): Promise<LivroModel>{
         const resultado = await executarComandoSQL(
-            "INSERT INTO lectus_bd.Livro (categoria_id, titulo, isbn, preco, estoque, sinopse, imageURL, autor, editora, data_publicacao) values (?,?,?,?,?)",
+            "INSERT INTO lectus_bd.Livro (categoria_id, titulo, autor, isbn, preco, estoque, sinopse, imageURL, editora, data_publicacao, promocao) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 livro.categoria_id, 
                 livro.titulo,
@@ -114,6 +114,11 @@ export class LivroRepository{
         const campos: string[] = [];
         const valores: any[] = [];
 
+        if(novosDados.categoria_id){
+            campos.push("categoria_id = ?");
+            valores.push(novosDados.categoria_id);
+        }
+
         if(novosDados.titulo){
             campos.push("titulo = ?");
             valores.push(novosDados.titulo);
@@ -124,14 +129,39 @@ export class LivroRepository{
             valores.push(novosDados.autor);
         }
 
+        if(novosDados.preco){
+            campos.push("preco = ?");
+            valores.push(novosDados.preco);
+        }
+
+        if(novosDados.estoque){
+            campos.push("estoque = ?");
+            valores.push(novosDados.estoque);
+        }
+
+        if(novosDados.sinopse){
+            campos.push("sinopse = ?");
+            valores.push(novosDados.sinopse);
+        }
+
+        if(novosDados.imageURL){
+            campos.push("imageURL = ?");
+            valores.push(novosDados.imageURL);
+        }
+
         if(novosDados.editora){
             campos.push("editora = ?");
             valores.push(novosDados.editora);
         }
 
-        if(novosDados.anoPublicacao){
-            campos.push("anoPublicacao = ?");
-            valores.push(novosDados.edicao);
+        if(novosDados.data_publicacao){
+            campos.push("data_publicacao = ?");
+            valores.push(novosDados.data_publicacao);
+        }
+
+        if(novosDados.promocao){
+            campos.push("promocao = ?");
+            valores.push(novosDados.promocao);
         }
 
         if (campos.length === 0) {
@@ -148,7 +178,7 @@ export class LivroRepository{
     }
 
     async listarLivros(): Promise<LivroModel[]>{
-        const resultado = await executarComandoSQL("SELECT * FROM biblioteca.Livro", []);
+        const resultado = await executarComandoSQL("SELECT * FROM lectus_bd.Livro", []);
         const livros: LivroModel[] = [];
         if(resultado && resultado.length > 0){
             for(let i = 0; i < resultado.length; i++){

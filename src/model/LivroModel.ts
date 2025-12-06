@@ -12,7 +12,7 @@ export class LivroModel {
     autor: string;
     editora: string;
     data_publicacao: Date;
-    promocao: boolean = false;
+    promocao? : boolean = false;
 
     constructor(categoria_id: number, titulo: string, isbn: string, preco: number, estoque: number, sinopse: string, imageURL: string, autor: string, editora: string, data_publicacao: Date) {
         this.id = LivroModel.proximoId++;
@@ -75,7 +75,7 @@ export class LivroModel {
     }
 
     getPromocao(): boolean{
-        return this.promocao;
+        return this.promocao ?? false;
     }
 
     //SETTERS
