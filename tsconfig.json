@@ -58,6 +58,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
 
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
     "verbatimModuleSyntax": true,
     "sourceMap": true
   },
