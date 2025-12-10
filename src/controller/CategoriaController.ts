@@ -1,8 +1,8 @@
-import { CategoriaService } from "@/service/CategoriaService";
+import { CategoriaService } from "../service/CategoriaService";
 import { Body, Controller, Delete, Get, Path, Post, Put, Query, Res, Route, Tags } from "tsoa";
 import type { TsoaResponse } from "tsoa";
-import { BasicResponseDto } from "@/model/dto/BasicResponseDto";
-import { CategoriaDto } from "@/model/dto/CategoriaDto";
+import { BasicResponseDto } from "../model/dto/BasicResponseDto";
+import { CategoriaDto } from "../model/dto/CategoriaDto";
 
 @Route("categoria")
 @Tags("Categoria")
