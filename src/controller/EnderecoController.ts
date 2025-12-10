@@ -1,8 +1,8 @@
 import { Controller, Route, Tags, Post, Body, Res, TsoaResponse, Get, Path, Put, Delete } from "tsoa";
 import { EnderecoService } from "../service/EnderecoService";
-import { EnderecoRequestDto } from "../model/dto/EnderecoRequestDto";
-import { EnderecoResponseDto } from "../model/dto/EnderecoResponseDto";
-import { BasicResponseDto } from "../model/dto/BasicResponseDto";
+import { EnderecoRequestDto } from "@/model/dto/EnderecoRequestDto";
+import { EnderecoResponseDto } from "@/model/dto/EnderecoResponseDto";
+import { BasicResponseDto } from "@/model/dto/BasicResponseDto";
 import { NotFoundError, ValidationError } from '../utils/errors';
 
 type FailResponse = TsoaResponse<400 | 404 | 500, BasicResponseDto>;

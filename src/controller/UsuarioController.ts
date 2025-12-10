@@ -1,8 +1,8 @@
 import { Controller, Route, Tags, Post, Body, Res, TsoaResponse, Get, Path, Put, Delete } from "tsoa";
 import { UsuarioService } from "../service/UsuarioService";
 import { UsuarioRequestDto } from "../model/dto/UsuarioRequestDto";
-import { UsuarioResponseDto } from "../model/dto/UsuarioResponseDto";
-import { BasicResponseDto } from "../model/dto/BasicResponseDto";
+import { UsuarioResponseDto } from "@/model/dto/UsuarioResponseDto";
+import { BasicResponseDto } from "@/model/dto/BasicResponseDto";
 import { NotFoundError, ConflictError, ValidationError } from '../utils/errors'; 
 type UsuarioFailResponse = TsoaResponse<400 | 404 | 409 | 500, BasicResponseDto>;
 

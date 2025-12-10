@@ -1,4 +1,4 @@
-export class CategoriaModel{
+export class CategoriaDto{
 
     id?: number;
     nome: string;
