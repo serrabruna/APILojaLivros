@@ -1,9 +1,9 @@
 import { Controller, Route, Tags, Post, Body, Res, TsoaResponse, Get, Path, Put, Delete } from "tsoa";
-import { UsuarioService } from "../service/UsuarioService";
-import { UsuarioRequestDto } from "../model/dto/UsuarioRequestDto";
-import { UsuarioResponseDto } from "@/model/dto/UsuarioResponseDto";
-import { BasicResponseDto } from "@/model/dto/BasicResponseDto";
-import { NotFoundError, ConflictError, ValidationError } from '../utils/errors'; 
+import { UsuarioService } from "@/service/UsuarioService"; // Alias corrigido
+import { UsuarioRequestDto } from "@/model/dto/UsuarioRequestDto"; // Alias corrigido
+import { UsuarioResponseDto } from "@/model/dto/UsuarioResponseDto"; // Alias corrigido
+import { BasicResponseDto } from "@/model/dto/BasicResponseDto"; // Alias corrigido
+import { NotFoundError, ConflictError, ValidationError } from '@/utils/errors'; // Alias corrigido
 type UsuarioFailResponse = TsoaResponse<400 | 404 | 409 | 500, BasicResponseDto>;
 
 const usuarioService = new UsuarioService();

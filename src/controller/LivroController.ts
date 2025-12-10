@@ -1,4 +1,4 @@
-import { LivroService } from "../service/LivroService";
+import { LivroService } from "@/service/LivroService";
 import { Body, Controller, Delete, Get, Path, Post, Put, Query, Res, Route, Tags } from "tsoa";
 import type { TsoaResponse } from "tsoa";
 import { BasicResponseDto } from "@/model/dto/BasicResponseDto";
