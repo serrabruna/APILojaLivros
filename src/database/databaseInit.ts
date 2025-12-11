@@ -11,14 +11,14 @@ export async function inicializarTabelas() {
     await UsuarioRepository.getInstance();
     console.log("✔ Usuario OK");
 
+    await CategoriaRepository.getInstance();
+    console.log("✔ Categoria OK");
+
     await EnderecoRepository.getInstance();
     console.log("✔ Endereco OK");
 
     await LivroRepository.getInstance();
     console.log("✔ Livro OK");
-
-    await CategoriaRepository.getInstance();
-    console.log("✔ Categoria OK");
 
     await PedidoRepository.getInstance();
     console.log("✔ Pedido OK");
