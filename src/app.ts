@@ -28,7 +28,7 @@ app.get('/health', (req, res) => {
     res.json({ status: 'API em funcionamento', timestamp: new Date() });
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 // 🚀 CHAMAR ANTES DE INICIAR O SERVIDOR
 inicializarTabelas().then(() => {

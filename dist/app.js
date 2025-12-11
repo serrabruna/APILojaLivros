@@ -26,7 +26,7 @@ app.use('/carrinho', carrinhoRoutes_js_1.default);
 app.get('/health', (req, res) => {
     res.json({ status: 'API em funcionamento', timestamp: new Date() });
 });
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 // 🚀 CHAMAR ANTES DE INICIAR O SERVIDOR
 (0, databaseInit_js_1.inicializarTabelas)().then(() => {
     app.listen(port, () => {
