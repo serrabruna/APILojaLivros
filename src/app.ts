@@ -30,13 +30,13 @@ app.get('/health', (req, res) => {
 
 const port = process.env.PORT || 8080;
 
-// 🚀 CHAMAR ANTES DE INICIAR O SERVIDOR
-inicializarTabelas().then(() => {
-    app.listen(port, () => {
-        console.log("Servidor rodando na porta " + port);
-    });
-}).catch((err) => {
-    console.error("Erro ao inicializar tabelas:", err);
+app.listen(port, () => {
+    console.log("Servidor rodando na porta " + port);
+
+    inicializarTabelas()
+        .then(() => console.log("Tabelas inicializadas"))
+        .catch(err => console.error("Erro ao inicializar tabelas:", err));
 });
+
 
 export default app;
