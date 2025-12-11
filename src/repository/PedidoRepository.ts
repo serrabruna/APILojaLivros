@@ -50,7 +50,6 @@ export class PedidoRepository {
             CREATE TABLE IF NOT EXISTS Pedido (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 usuario_id INT NOT NULL,
-                endereco_entrega_id INT NOT NULL,
                 data_pedido DATETIME NOT NULL, 
                 valor_total DECIMAL(10,2) NOT NULL,
                 status_pedido ENUM('PENDENTE', 'PROCESSANDO', 'ENVIADO', 'ENTREGUE', 'CANCELADO') NOT NULL,
