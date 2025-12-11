@@ -57,7 +57,6 @@ export class PedidoRepository {
                 -- NOVO CAMPO COM ENUM
                 forma_pagamento ENUM('PIX', 'CARTAO_CREDITO', 'BOLETO', 'TRANSFERENCIA') NOT NULL,
                 FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
-                FOREIGN KEY (endereco_entrega_id) REFERENCES Endereco(id)
             )`;
         try {
             await executarComandoSQL(query, []);
