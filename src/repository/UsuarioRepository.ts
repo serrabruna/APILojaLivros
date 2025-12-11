@@ -24,7 +24,7 @@ export class UsuarioRepository{
                 senha_hash VARCHAR(255) NOT NULL,
                 telefone VARCHAR(20) NOT NULL,
                 tipo_usuario ENUM('CLIENTE', 'ADMIN') NOT NULL
-            )`;
+            )ENGINE=InnoDB`;
         try {
             await executarComandoSQL(query, []);
             console.log("Tabela Usuario criada com sucesso.");

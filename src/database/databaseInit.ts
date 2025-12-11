@@ -8,23 +8,23 @@ import { CarrinhoRepository } from '../repository/CarrinhoRepository.js';
 export async function inicializarTabelas() {
     console.log("⬆️ Iniciando criação das tabelas...");
 
-    await UsuarioRepository.getInstance();
-    console.log("✔ Usuario OK");
+    await UsuarioRepository.getInstance(); 
+    console.log("✔ 1. Usuario OK"); 
 
-    await CategoriaRepository.getInstance();
-    console.log("✔ Categoria OK");
+    await CategoriaRepository.getInstance(); 
+    console.log("✔ 2. Categoria OK"); 
 
     await EnderecoRepository.getInstance();
-    console.log("✔ Endereco OK");
+    console.log("✔ 3. Endereco OK"); 
 
-    await LivroRepository.getInstance();
-    console.log("✔ Livro OK");
+    await LivroRepository.getInstance(); 
+    console.log("✔ 4. Livro OK"); 
 
     await PedidoRepository.getInstance();
-    console.log("✔ Pedido OK");
+    console.log("✔ 5. Pedido OK"); 
 
-    await CarrinhoRepository.getInstance();
-    console.log("✔ Carrinho OK");
+    await CarrinhoRepository.getInstance(); 
+    console.log("✔ 6. Carrinho OK");
 
     console.log("🎉 Todas as tabelas criadas com sucesso!");
 }

@@ -40,7 +40,7 @@ export class CarrinhoRepository {
                 UNIQUE KEY unique_item (usuario_id, livro_id), 
                 FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
                 FOREIGN KEY (livro_id) REFERENCES Livro(id)
-            )`;
+            )ENGINE=InnoDB`;
         await executarComandoSQL(query, []);
     }
 
