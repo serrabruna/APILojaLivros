@@ -55,7 +55,7 @@ export class PedidoRepository {
                 status_pedido ENUM('PENDENTE', 'PROCESSANDO', 'ENVIADO', 'ENTREGUE', 'CANCELADO') NOT NULL,
                 -- NOVO CAMPO COM ENUM
                 forma_pagamento ENUM('PIX', 'CARTAO_CREDITO', 'BOLETO', 'TRANSFERENCIA') NOT NULL,
-                FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
+                FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
             )`;
         try {
             await executarComandoSQL(query, []);
