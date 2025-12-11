@@ -21,6 +21,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 // Rotas
 app.use('/livros', livroRoutes_js_1.default);
 app.use('/categorias', categoriaRoutes_js_1.default);
+//app.use('/pedidos', pedidoRoutes);
 app.use('/item-pedido', itemPedidoRoutes_js_1.default);
 app.use('/carrinho', carrinhoRoutes_js_1.default);
 // Configuração do Swagger
