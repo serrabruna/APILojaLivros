@@ -47,7 +47,7 @@ export class LivroRepository{
                 editora VARCHAR(255) NOT NULL,
                 data_publicacao DATE,
                 promocao BOOLEAN DEFAULT FALSE
-                )`;
+                )ENGINE=InnoDB`;
 
         try{
             const resultado = await executarComandoSQL(query, []);

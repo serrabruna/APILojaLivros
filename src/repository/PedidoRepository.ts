@@ -58,7 +58,7 @@ export class PedidoRepository {
                 forma_pagamento ENUM('PIX', 'CARTAO_CREDITO', 'BOLETO', 'TRANSFERENCIA') NOT NULL,
                 FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
                 FOREIGN KEY (endereco_entrega_id) REFERENCES Endereco(id)
-            )`;
+            )ENGINE=InnoDB`;
         try {
             await executarComandoSQL(query, []);
         } catch (err) {

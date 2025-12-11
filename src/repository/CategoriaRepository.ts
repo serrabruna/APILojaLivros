@@ -20,7 +20,7 @@ export class CategoriaRepository{
         const query = `CREATE TABLE IF NOT EXISTS Categoria(
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nome VARCHAR(100) NOT NULL
-                )`;
+                )ENGINE=InnoDB`;
 
         try{
             const resultado = await executarComandoSQL(query, []);
