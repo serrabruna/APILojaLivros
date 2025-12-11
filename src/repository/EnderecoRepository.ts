@@ -1,9 +1,8 @@
 import { EnderecoModel } from '../model/entity/EnderecoModel';
 import { RowDataPacket, OkPacket } from 'mysql2/promise';
-// Ajuste este caminho se necessário
 import { executarComandoSQL } from '../database/mysql'; 
 
-// Tipos auxiliares
+
 type EnderecoCreateData = Omit<EnderecoModel, 'id'>;
 type EnderecoUpdateData = Partial<EnderecoModel>;
 
@@ -45,7 +44,7 @@ export class EnderecoRepository {
                 cidade VARCHAR(100) NOT NULL,
                 estado VARCHAR(50) NOT NULL,
                 FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE
-            )`;
+            )ENGINE=InnoDB`;
         await executarComandoSQL(query, []);
     }
 
