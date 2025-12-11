@@ -38,8 +38,14 @@ app.use((req, res) => {
 });
 
 // Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}/api-docs`);
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log('Servidor rodando na porta' + port);
 });
+
+// app.listen(PORT, () => {
+//     console.log(`Servidor rodando em http://localhost:${PORT}/api-docs`);
+// });
 
 export default app;

@@ -21,6 +21,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 // Rotas
 app.use('/livros', livroRoutes_js_1.default);
 app.use('/categorias', categoriaRoutes_js_1.default);
+//app.use('/pedidos', pedidoRoutes);
 app.use('/item-pedido', itemPedidoRoutes_js_1.default);
 app.use('/carrinho', carrinhoRoutes_js_1.default);
 // Configuração do Swagger
@@ -34,7 +35,11 @@ app.use((req, res) => {
     res.status(404).json({ error: 'Rota não encontrada' });
 });
 // Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}/api-docs`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log('Servidor rodando na porta' + port);
 });
+// app.listen(PORT, () => {
+//     console.log(`Servidor rodando em http://localhost:${PORT}/api-docs`);
+// });
 exports.default = app;
