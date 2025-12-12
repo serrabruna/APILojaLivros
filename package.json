@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "build": "node ./node_modules/tsoa/dist/cli.js spec-and-routes && tsc",
-    "start": "ls -R dist && node dist/server.js"
+    "start": "node dist/app.js"
   },
   "engines": {
     "node": ">=18.0.0",

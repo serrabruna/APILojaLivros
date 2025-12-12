@@ -6,7 +6,7 @@ import livroRoutes from "./routes/livroRoutes.js";
 import categoriaRoutes from "./routes/categoriaRoutes.js";
 import itemPedidoRoutes from "./routes/itemPedidoRoutes.js";
 import carrinhoRoutes from "./routes/carrinhoRoutes.js";
-import { RegisterRoutes } from "./route/routes.js";
+import { RegisterRoutes } from "./route/routes.js"; 
 import { inicializarTabelas } from "./database/databaseInit.js";
 
 const app = express();
@@ -30,10 +30,12 @@ app.options(/.*/, cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Configuração das Rotas e Swagger
+// Configuração do Swagger
 setupSwagger(app);
 
-// Rotas manuais
+RegisterRoutes(app); 
+
+// Rotas manuais (Express tradicional)
 app.use("/livros", livroRoutes);
 app.use("/categorias", categoriaRoutes);
 app.use("/item-pedido", itemPedidoRoutes);
@@ -49,7 +51,7 @@ app.get("/health", (req, res) => {
   res.json({ status: "API em funcionamento", timestamp: new Date() });
 });
 
-// 3. Middleware Global
+// Middleware Global de Erro
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error("Erro interno:", err);
   res.status(500).json({
@@ -73,11 +75,10 @@ const startServer = async () => {
     });
   } catch (error) {
     console.error("❌ Falha crítica ao iniciar o servidor:", error);
-    process.exit(1); // Encerra o processo com erro para o Render tentar reiniciar
+    process.exit(1);
   }
 };
 
-// Executa a função
 startServer();
 
 export default app;
