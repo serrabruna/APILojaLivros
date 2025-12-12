@@ -23,7 +23,7 @@ class PedidoRepository {
     }
     async createTable() {
         const query = `
-            CREATE TABLE IF NOT EXISTS Pedido (
+            CREATE TABLE IF NOT EXISTS pedido (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 usuario_id INT NOT NULL,
                 endereco_entrega_id INT NOT NULL,
@@ -32,8 +32,8 @@ class PedidoRepository {
                 status_pedido ENUM('PENDENTE', 'PROCESSANDO', 'ENVIADO', 'ENTREGUE', 'CANCELADO') NOT NULL,
                 -- NOVO CAMPO COM ENUM
                 forma_pagamento ENUM('PIX', 'CARTAO_CREDITO', 'BOLETO', 'TRANSFERENCIA') NOT NULL,
-                FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
-                FOREIGN KEY (endereco_entrega_id) REFERENCES Endereco(id)
+                FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE,
+                FOREIGN KEY (endereco_entrega_id) REFERENCES endereco(id)
             )ENGINE=InnoDB`;
         try {
             await (0, mysql_1.executarComandoSQL)(query, []);

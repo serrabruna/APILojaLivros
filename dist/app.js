@@ -11,6 +11,7 @@ const livroRoutes_js_1 = __importDefault(require("./routes/livroRoutes.js"));
 const categoriaRoutes_js_1 = __importDefault(require("./routes/categoriaRoutes.js"));
 const itemPedidoRoutes_js_1 = __importDefault(require("./routes/itemPedidoRoutes.js"));
 const carrinhoRoutes_js_1 = __importDefault(require("./routes/carrinhoRoutes.js"));
+const routes_js_1 = require("./route/routes.js");
 const databaseInit_js_1 = require("./database/databaseInit.js");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
@@ -27,9 +28,10 @@ app.use((0, cors_1.default)({
 app.options(/.*/, (0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-// Configuração das Rotas e Swagger
+// Configuração do Swagger
 (0, swagger_js_1.setupSwagger)(app);
-// Rotas manuais
+(0, routes_js_1.RegisterRoutes)(app);
+// Rotas manuais (Express tradicional)
 app.use("/livros", livroRoutes_js_1.default);
 app.use("/categorias", categoriaRoutes_js_1.default);
 app.use("/item-pedido", itemPedidoRoutes_js_1.default);
@@ -42,7 +44,7 @@ app.get("/", (req, res) => {
 app.get("/health", (req, res) => {
     res.json({ status: "API em funcionamento", timestamp: new Date() });
 });
-// 3. Middleware Global
+// Middleware Global de Erro
 app.use((err, req, res, next) => {
     console.error("Erro interno:", err);
     res.status(500).json({
@@ -63,9 +65,8 @@ const startServer = async () => {
     }
     catch (error) {
         console.error("❌ Falha crítica ao iniciar o servidor:", error);
-        process.exit(1); // Encerra o processo com erro para o Render tentar reiniciar
+        process.exit(1);
     }
 };
-// Executa a função
 startServer();
 exports.default = app;

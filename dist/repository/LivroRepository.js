@@ -17,7 +17,7 @@ class LivroRepository {
         return new LivroModel_1.LivroModel(row.categoria_id, row.titulo, row.autor, row.isbn, row.preco, row.estoque, row.sinopse, row.imageURL, row.editora, row.data_publicacao, row.promocao, row.id);
     }
     async criarTable() {
-        const query = `CREATE TABLE IF NOT EXISTS Livro(
+        const query = `CREATE TABLE IF NOT EXISTS livro(
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 categoria_id INT NOT NULL,
                 titulo VARCHAR(255) NOT NULL,
