@@ -4,7 +4,6 @@ exports.CarrinhoRepository = void 0;
 const mysql_1 = require("../database/mysql");
 const CarrinhoModel_1 = require("../model/entity/CarrinhoModel");
 class CarrinhoRepository {
-    static instance;
     constructor() { }
     static async getInstance() {
         if (!CarrinhoRepository.instance) {

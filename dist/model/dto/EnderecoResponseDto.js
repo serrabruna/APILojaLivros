@@ -2,14 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnderecoResponseDto = void 0;
 class EnderecoResponseDto {
-    id;
-    usuario_id;
-    cep;
-    rua;
-    numero;
-    complemento;
-    cidade;
-    estado;
     constructor(endereco) {
         this.id = endereco.id;
         this.usuario_id = endereco.usuario_id;

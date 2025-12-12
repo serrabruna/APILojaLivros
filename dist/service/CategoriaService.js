@@ -4,7 +4,9 @@ exports.CategoriaService = void 0;
 const CategoriaModel_1 = require("../model/entity/CategoriaModel");
 const CategoriaRepository_1 = require("../repository/CategoriaRepository");
 class CategoriaService {
-    categoriaRepository = CategoriaRepository_1.CategoriaRepository.getInstance();
+    constructor() {
+        this.categoriaRepository = CategoriaRepository_1.CategoriaRepository.getInstance();
+    }
     async novaCategoria(data) {
         // construir modelo
         const categoria = new CategoriaModel_1.CategoriaModel(data.nome, data.id);

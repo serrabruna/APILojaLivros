@@ -2,11 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarrinhoResponseDto = void 0;
 class CarrinhoResponseDto {
-    id;
-    usuario_id;
-    livro_id;
-    quantidade;
-    data_adicao;
     constructor(model) {
         this.id = model.id;
         this.usuario_id = model.usuario_id;

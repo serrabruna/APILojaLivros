@@ -5,7 +5,6 @@ const mysql_1 = require("../database/mysql");
 const PedidoModel_1 = require("../model/entity/PedidoModel");
 const ItemPedidoModel_1 = require("../model/entity/ItemPedidoModel");
 class PedidoRepository {
-    static instance;
     constructor() { }
     static async getInstance() {
         if (!PedidoRepository.instance) {

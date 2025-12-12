@@ -2,11 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioRequestDto = void 0;
 class UsuarioRequestDto {
-    nome;
-    email;
-    senha_hash;
-    telefone;
-    tipo_usuario;
     constructor(nome, email, senha_hash, telefone, tipo_usuario) {
         this.nome = nome,
             this.email = email,

@@ -2,11 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioResponseDto = void 0;
 class UsuarioResponseDto {
-    id;
-    nome;
-    email;
-    telefone;
-    tipo_usuario;
     constructor(usuario) {
         this.id = usuario.id;
         this.nome = usuario.nome;
