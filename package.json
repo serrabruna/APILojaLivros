@@ -20,9 +20,8 @@
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1",
     "mysql2": "^3.15.3",
-    "swagger-ui-express": "^5.0.1",
     "tsoa": "^6.6.0",
-    "typescript": "^5.9.3"
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -31,7 +30,8 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.10.6",
     "@types/swagger-ui-express": "^4.1.8",
-    "swagger-autogen": "^2.23.7"
+    "swagger-autogen": "^2.23.7",
+    "typescript": "^5.9.3"
   },
   "repository": {
     "type": "git",
