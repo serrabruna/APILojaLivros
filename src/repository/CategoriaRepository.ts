@@ -17,7 +17,7 @@ export class CategoriaRepository{
     }
 
     private async criarTable(){
-        const query = `CREATE TABLE IF NOT EXISTS Categoria(
+        const query = `CREATE TABLE IF NOT EXISTS categoria(
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nome VARCHAR(100) NOT NULL
                 )ENGINE=InnoDB`;

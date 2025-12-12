@@ -37,3 +37,9 @@ export async function executarComandoSQL(query: string, valores: any[] = []): Pr
         throw error;
     }
 }
+
+export async function toggleForeignKeyChecks(enable: boolean) {
+    const valor = enable ? 1 : 0;
+    await executarComandoSQL(`SET FOREIGN_KEY_CHECKS = ${valor}`, []);
+    console.log(`🔧 Foreign Key Checks definidos para: ${valor}`);
+}

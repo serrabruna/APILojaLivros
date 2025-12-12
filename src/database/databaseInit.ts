@@ -4,32 +4,29 @@ import { LivroRepository } from '../repository/LivroRepository.js';
 import { CategoriaRepository } from '../repository/CategoriaRepository.js';
 import { PedidoRepository } from '../repository/PedidoRepository.js';
 import { CarrinhoRepository } from '../repository/CarrinhoRepository.js';
+import { toggleForeignKeyChecks } from './mysql.js'; // Importe a função nova
 
 export async function inicializarTabelas() {
-    console.log("⬆️ Iniciando criação das tabelas...");
+    console.log("⬆️ Iniciando criação de tabelas (Modo Forçado)...");
 
-    await UsuarioRepository.getInstance(); 
-    console.log("✔ 1. Usuario OK"); 
+    try {
+        await toggleForeignKeyChecks(false);
 
-    await CategoriaRepository.getInstance(); 
-    console.log("✔ 2. Categoria OK");
-
-    try{
+        console.log("⏳ Instanciando tabelas...");
+        
+        await UsuarioRepository.getInstance(); 
+        await CategoriaRepository.getInstance(); 
         await EnderecoRepository.getInstance();
-        console.log("✔ 3. Endereco OK"); 
-    }catch(err){
-        console.error("❌ Erro ao criar tabela Endereco:", err);
+        await LivroRepository.getInstance(); 
+        await PedidoRepository.getInstance();
+        await CarrinhoRepository.getInstance(); 
+
+        console.log("🎉 Todas as tabelas foram processadas!");
+
+    } catch(err) {
+        console.error("❌ Erro ao criar tabelas:", err);
         throw err;
+    } finally {
+        await toggleForeignKeyChecks(true);
     }
-
-    await LivroRepository.getInstance(); 
-    console.log("✔ 4. Livro OK"); 
-
-    await PedidoRepository.getInstance();
-    console.log("✔ 5. Pedido OK"); 
-
-    await CarrinhoRepository.getInstance(); 
-    console.log("✔ 6. Carrinho OK");
-
-    console.log("🎉 Todas as tabelas criadas com sucesso!");
 }

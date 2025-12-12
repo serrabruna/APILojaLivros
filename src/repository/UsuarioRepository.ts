@@ -17,7 +17,7 @@ export class UsuarioRepository{
 
     public async createTable(): Promise<void> {
         const query = `
-            CREATE TABLE IF NOT EXISTS Usuario (
+            CREATE TABLE IF NOT EXISTS usuario (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nome VARCHAR(100) NOT NULL,
                 email VARCHAR(150) NOT NULL UNIQUE,

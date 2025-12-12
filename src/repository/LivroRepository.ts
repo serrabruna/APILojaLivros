@@ -34,7 +34,7 @@ export class LivroRepository{
     }
 
     private async criarTable(){
-        const query = `CREATE TABLE IF NOT EXISTS Livro(
+        const query = `CREATE TABLE IF NOT EXISTS livro(
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 categoria_id INT NOT NULL,
                 titulo VARCHAR(255) NOT NULL,

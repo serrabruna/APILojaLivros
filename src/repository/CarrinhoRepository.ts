@@ -30,7 +30,7 @@ export class CarrinhoRepository {
 
     public async createTable(): Promise<void> {
         const query = `
-            CREATE TABLE IF NOT EXISTS Carrinho (
+            CREATE TABLE IF NOT EXISTS carrinho (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 usuario_id INT NOT NULL,
                 livro_id INT NOT NULL,
@@ -38,8 +38,8 @@ export class CarrinhoRepository {
                 data_adicao DATETIME NOT NULL,
                 -- CRUCIAL: Garante que um usuário não pode ter o mesmo livro duas vezes
                 UNIQUE KEY unique_item (usuario_id, livro_id), 
-                FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
-                FOREIGN KEY (livro_id) REFERENCES Livro(id)
+                FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE,
+                FOREIGN KEY (livro_id) REFERENCES livro(id)
             )ENGINE=InnoDB`;
         await executarComandoSQL(query, []);
     }
