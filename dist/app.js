@@ -14,7 +14,11 @@ const routes_js_1 = require("./route/routes.js");
 // IMPORTANTE 👇
 const databaseInit_js_1 = require("./database/databaseInit.js");
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 (0, routes_js_1.RegisterRoutes)(app);
