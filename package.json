@@ -28,6 +28,7 @@
   "scripts": {
     "build": "npx tsc --ignoreDeprecations 5.0",
     "start": "node dist/app.js",
+    "dev": "ts-node src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
