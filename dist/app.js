@@ -17,7 +17,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
     credentials: false
 }));
 app.options(/.*/, (0, cors_1.default)());
