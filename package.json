@@ -26,7 +26,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run tsoa && npx tsc --ignoreDeprecations 5.0",
+    "build": "npm run tsoa && node ./node_modules/typescript/bin/tsc --ignoreDeprecations 5.0",
     "tsoa": "node ./node_modules/tsoa/dist/cli.js spec-and-routes",
     "start": "node dist/app.js",
     "dev": "ts-node src/app.ts",
