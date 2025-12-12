@@ -26,8 +26,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "tsoa spec-and-routes",
     "build": "npx tsc --ignoreDeprecations 5.0",
     "start": "node dist/app.js",
+    "dev": "npm run prebuild && npm run build && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

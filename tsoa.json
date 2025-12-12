@@ -5,20 +5,25 @@
         "src/controller/**/*.ts"
     ],
     "spec": {
-        "outputDirectory": "dist",
+        "outputDirectory": "src",
         "specVersion": 3,
         "spec": {
             "info": {
-                "title": "API Livraria Documentação comtestes e etc 1.0",
-                "version": "1.0.2",
-                "description": "Documentação da API usando Swagger para realizacao de testes e etc e tal "
+                "title": "API Livraria",
+                "version": "1.0.0",
+                "description": "API completa para gerenciamento de livraria com usuários, livros, pedidos e carrinho de compras"
             },
             "servers": [
                 {
                     "url": "https://apilojalivros-production.up.railway.app",
                     "description": "Servidor em produção (Railway)"
+                },
+                {
+                    "url": "http://localhost:8080",
+                    "description": "Servidor local"
                 }
-            ]
+            ],
+            "schemes": ["https", "http"]
         }
     },
     "routes": {
