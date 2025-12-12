@@ -10,15 +10,22 @@ const dbConfig = {
     database: process.env.MYSQLDATABASE
 };
 
+console.log('🔧 Configuração do Banco de Dados:');
+console.log('Host:', dbConfig.host);
+console.log('Port:', dbConfig.port);
+console.log('User:', dbConfig.user);
+console.log('Database:', dbConfig.database);
+console.log('Password:', dbConfig.password ? '***definido***' : '❌ NÃO DEFINIDO');
+
 const mysqlConnection: Connection = mysql.createConnection(dbConfig);
 
 mysqlConnection.connect((err) => {
     if (err) {
-        console.error('Erro ao conectar ao banco de dados: ', err);
+        console.error('❌ Erro ao conectar ao banco de dados: ', err);
         throw err;
     }
 
-    console.log('Conexao bem-sucedida com o banco de dados MYSQL');
+    console.log('✅ Conexao bem-sucedida com o banco de dados MYSQL');
 })
 
 export function executarComandoSQL(query: string, valores: any[]): Promise<any> {
