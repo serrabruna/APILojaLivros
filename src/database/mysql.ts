@@ -10,12 +10,11 @@ const dbConfig = {
     database: process.env.MYSQLDATABASE
 };
 
-console.log('🔧 Configuração do Banco de Dados:');
-console.log('Host:', dbConfig.host);
-console.log('Port:', dbConfig.port);
-console.log('User:', dbConfig.user);
-console.log('Database:', dbConfig.database);
-console.log('Password:', dbConfig.password ? '***definido***' : '❌ NÃO DEFINIDO');
+console.log('🔧 Configurando conexão MySQL...');
+console.log('Host:', process.env.MYSQLHOST || 'NÃO DEFINIDO');
+console.log('Port:', process.env.MYSQLPORT || 'NÃO DEFINIDO');
+console.log('Database:', process.env.MYSQLDATABASE || 'NÃO DEFINIDO');
+console.log('User:', process.env.MYSQLUSER || 'NÃO DEFINIDO');
 
 const mysqlConnection: Connection = mysql.createConnection(dbConfig);
 
