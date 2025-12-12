@@ -20,7 +20,7 @@ app.use((0, cors_1.default)({
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: false
 }));
-app.options("*", (0, cors_1.default)());
+app.options(/.*/, (0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 (0, routes_js_1.RegisterRoutes)(app);
