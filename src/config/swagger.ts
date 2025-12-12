@@ -3,12 +3,23 @@ import type { Express } from 'express';
 import path from 'path';
 import fs from 'fs';
 
-const swaggerFile = path.join(__dirname, '../swagger.json');
-const swaggerSpec = JSON.parse(fs.readFileSync(swaggerFile, 'utf8'));
+const swaggerFilePath = path.resolve(process.cwd(), 'swagger.json');
+
+let swaggerSpec: any;
+try {
+    if (fs.existsSync(swaggerFilePath)) {
+        swaggerSpec = JSON.parse(fs.readFileSync(swaggerFilePath, 'utf8'));
+    } else {
+        console.warn('⚠️ Arquivo swagger.json não encontrado em:', swaggerFilePath);
+        swaggerSpec = {};
+    }
+} catch (error) {
+    console.error('❌ Erro ao ler swagger.json:', error);
+    swaggerSpec = {};
+}
 
 const swaggerOptions = {
     swaggerOptions: {
-        url: '/swagger.json', 
         persistAuthorization: true,
         displayRequestDuration: true,
         filter: true,
@@ -25,8 +36,10 @@ export const setupSwagger = (app: Express) => {
         res.send(swaggerSpec);
     });
 
-    app.use('/api-docs', swaggerUi.serve);
-    app.get('/api-docs', swaggerUi.setup(swaggerSpec, swaggerOptions));
-    
-    console.log('Swagger configurado em /api-docs');
+    if (Object.keys(swaggerSpec).length > 0) {
+        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
+        console.log('✅ Swagger configurado em /api-docs');
+    } else {
+        console.log('⚠️ Swagger não carregado (spec vazia).');
+    }
 };

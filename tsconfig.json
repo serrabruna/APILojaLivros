@@ -15,6 +15,6 @@
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/config/swagger.ts"],
   "exclude": ["node_modules", "dist", "database", "**/*.test.ts"]
 }

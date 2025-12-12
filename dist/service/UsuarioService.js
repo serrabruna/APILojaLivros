@@ -41,7 +41,6 @@ const TipoUsuario_1 = require("../enums/TipoUsuario");
 const UsuarioResponseDto_1 = require("../model/dto/UsuarioResponseDto");
 const errors_1 = require("../utils/errors");
 class UsuarioService {
-    usuarioRepository;
     constructor(usuarioRepository = new UsuarioRepository_1.UsuarioRepository()) {
         this.usuarioRepository = usuarioRepository;
     }

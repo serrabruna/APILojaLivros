@@ -7,9 +7,6 @@ const UsuarioRepository_1 = require("../repository/UsuarioRepository");
 const errors_1 = require("../utils/errors");
 const CategoriaRepository_1 = require("../repository/CategoriaRepository");
 class LivroService {
-    livroRepository;
-    usuarioRepository;
-    categoriaRepository;
     constructor(livroRepository = LivroRepository_1.LivroRepository.getInstance(), usuarioRepository = UsuarioRepository_1.UsuarioRepository.getInstance(), categoriaRepository = CategoriaRepository_1.CategoriaRepository.getInstance()) {
         this.livroRepository = livroRepository;
         this.usuarioRepository = usuarioRepository;

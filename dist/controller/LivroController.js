@@ -19,7 +19,10 @@ const BasicResponseDto_1 = require("../model/dto/BasicResponseDto");
 const LivroRequestDto_1 = require("../model/dto/LivroRequestDto");
 const LivroUpdateDto_1 = require("../model/dto/LivroUpdateDto");
 let LivroController = class LivroController extends tsoa_1.Controller {
-    livroService = new LivroService_1.LivroService();
+    constructor() {
+        super(...arguments);
+        this.livroService = new LivroService_1.LivroService();
+    }
     async criarLivro(dto, fail, success) {
         try {
             dto.isbn = String(dto.isbn);

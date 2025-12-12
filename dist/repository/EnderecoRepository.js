@@ -4,7 +4,6 @@ exports.EnderecoRepository = void 0;
 const EnderecoModel_1 = require("../model/entity/EnderecoModel");
 const mysql_1 = require("../database/mysql");
 class EnderecoRepository {
-    static instance;
     constructor() { }
     static async getInstance() {
         if (!EnderecoRepository.instance) {

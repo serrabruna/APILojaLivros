@@ -6,8 +6,6 @@ const EnderecoResponseDto_1 = require("../model/dto/EnderecoResponseDto");
 const UsuarioRepository_1 = require("../repository/UsuarioRepository");
 const errors_1 = require("../utils/errors");
 class EnderecoService {
-    enderecoRepository;
-    usuarioRepository;
     constructor(enderecoRepository = new EnderecoRepository_1.EnderecoRepository(), usuarioRepository = new UsuarioRepository_1.UsuarioRepository()) {
         this.enderecoRepository = enderecoRepository;
         this.usuarioRepository = usuarioRepository;

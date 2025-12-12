@@ -2,17 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LivroUpdateDto = void 0;
 class LivroUpdateDto {
-    categoria_id;
-    titulo;
-    autor;
-    isbn;
-    preco;
-    estoque;
-    sinopse;
-    imageURL;
-    editora;
-    data_publicacao;
-    promocao;
     constructor(categoria_id, titulo, autor, isbn, preco, estoque, sinopse, imageURL, editora, data_publicacao, promocao) {
         this.categoria_id = categoria_id;
         this.titulo = titulo;

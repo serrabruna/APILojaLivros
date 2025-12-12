@@ -7,9 +7,6 @@ const UsuarioRepository_1 = require("../repository/UsuarioRepository");
 const CarrinhoResponseDto_1 = require("../model/dto/CarrinhoResponseDto");
 const errors_1 = require("../utils/errors");
 class CarrinhoService {
-    carrinhoRepository;
-    livroRepository;
-    usuarioRepository;
     constructor(carrinhoRepository = CarrinhoRepository_1.CarrinhoRepository.getInstance(), livroRepository = LivroRepository_1.LivroRepository.getInstance(), usuarioRepository = UsuarioRepository_1.UsuarioRepository.getInstance()) {
         this.carrinhoRepository = carrinhoRepository;
         this.livroRepository = livroRepository;

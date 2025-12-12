@@ -3,39 +3,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.executarComandoSQL = executarComandoSQL;
+const promise_1 = __importDefault(require("mysql2/promise"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const mysql2_1 = __importDefault(require("mysql2"));
-const dbConfig = {
-    host: process.env.MYSQLHOST,
-    port: Number(process.env.MYSQLPORT),
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE
-};
-console.log('🔧 Configurando conexão MySQL...');
-console.log('Host:', process.env.MYSQLHOST || 'NÃO DEFINIDO');
-console.log('Port:', process.env.MYSQLPORT || 'NÃO DEFINIDO');
-console.log('Database:', process.env.MYSQLDATABASE || 'NÃO DEFINIDO');
-console.log('User:', process.env.MYSQLUSER || 'NÃO DEFINIDO');
-const mysqlConnection = mysql2_1.default.createConnection(dbConfig);
-mysqlConnection.connect((err) => {
-    if (err) {
-        console.error('❌ Erro ao conectar ao banco de dados: ', err);
-        throw err;
-    }
-    console.log('✅ Conexao bem-sucedida com o banco de dados MYSQL');
+const pool = promise_1.default.createPool({
+    host: process.env.DB_HOST,
+    port: 4000,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    ssl: {
+        minVersion: 'TLSv1.2',
+        rejectUnauthorized: true
+    },
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
-function executarComandoSQL(query, valores) {
-    return new Promise((resolve, reject) => {
-        mysqlConnection.query(query, valores, (err, resultado) => {
-            if (err) {
-                console.error('Erro ao executar a query.', err);
-                reject(err);
-                return;
-            }
-            resolve(resultado);
-        });
-    });
-}
+exports.default = pool;

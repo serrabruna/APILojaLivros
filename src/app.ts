@@ -1,55 +1,83 @@
-import express from 'express';
-import cors from 'cors';
-import { setupSwagger } from './config/swagger.js';
-import livroRoutes from './routes/livroRoutes.js';
-import categoriaRoutes from './routes/categoriaRoutes.js';
-import itemPedidoRoutes from './routes/itemPedidoRoutes.js';
-import carrinhoRoutes from './routes/carrinhoRoutes.js';
-import { RegisterRoutes } from './route/routes.js';
-
-// IMPORTANTE 👇
-import { inicializarTabelas } from './database/databaseInit.js';
+import "dotenv/config";
+import express, { Request, Response, NextFunction } from "express";
+import cors from "cors";
+import { setupSwagger } from "./config/swagger.js";
+import livroRoutes from "./routes/livroRoutes.js";
+import categoriaRoutes from "./routes/categoriaRoutes.js";
+import itemPedidoRoutes from "./routes/itemPedidoRoutes.js";
+import carrinhoRoutes from "./routes/carrinhoRoutes.js";
+import { RegisterRoutes } from "./route/routes.js";
+import { inicializarTabelas } from "./database/databaseInit.js";
 
 const app = express();
 
-app.use(cors({
+app.use(
+  cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-    credentials: false
-}));
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Accept",
+    ],
+    credentials: false,
+  })
+);
 
 app.options(/.*/, cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configuração das Rotas e Swagger
 setupSwagger(app);
-RegisterRoutes(app);
 
-app.use('/livros', livroRoutes);
-app.use('/categorias', categoriaRoutes);
-app.use('/item-pedido', itemPedidoRoutes);
-app.use('/carrinho', carrinhoRoutes);
+// Rotas manuais
+app.use("/livros", livroRoutes);
+app.use("/categorias", categoriaRoutes);
+app.use("/item-pedido", itemPedidoRoutes);
+app.use("/carrinho", carrinhoRoutes);
 
-app.get('/', (req, res) => {
-    res.redirect('/api-docs');
+// Redirecionamento raiz
+app.get("/", (req, res) => {
+  res.redirect("/api-docs");
 });
 
+// Health Check
+app.get("/health", (req, res) => {
+  res.json({ status: "API em funcionamento", timestamp: new Date() });
+});
 
-app.get('/health', (req, res) => {
-    res.json({ status: 'API em funcionamento', timestamp: new Date() });
+// 3. Middleware Global
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error("Erro interno:", err);
+  res.status(500).json({
+    message: "Erro interno do servidor",
+    error: process.env.NODE_ENV === "development" ? err.message : undefined,
+  });
 });
 
 const port = process.env.PORT || 8080;
 
-app.listen(port, () => {
-    console.log("Servidor rodando na porta " + port);
+const startServer = async () => {
+  try {
+    console.log("⏳ Conectando ao banco de dados e sincronizando tabelas...");
 
-    inicializarTabelas()
-        .then(() => console.log("Tabelas inicializadas"))
-        .catch(err => console.error("Erro ao inicializar tabelas:", err));
-});
+    await inicializarTabelas();
+    console.log("✅ Tabelas inicializadas com sucesso!");
 
+    app.listen(port, () => {
+      console.log(`🚀 Servidor rodando na porta ${port}`);
+      console.log(`📄 Docs disponíveis em http://localhost:${port}/api-docs`);
+    });
+  } catch (error) {
+    console.error("❌ Falha crítica ao iniciar o servidor:", error);
+    process.exit(1); // Encerra o processo com erro para o Render tentar reiniciar
+  }
+};
+
+// Executa a função
+startServer();
 
 export default app;

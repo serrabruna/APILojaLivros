@@ -19,7 +19,10 @@ const EnderecoRequestDto_1 = require("../model/dto/EnderecoRequestDto");
 const BasicResponseDto_1 = require("../model/dto/BasicResponseDto");
 const errors_1 = require("../utils/errors");
 let EnderecoController = class EnderecoController extends tsoa_1.Controller {
-    enderecoService = new EnderecoService_1.EnderecoService();
+    constructor() {
+        super(...arguments);
+        this.enderecoService = new EnderecoService_1.EnderecoService();
+    }
     async criarEndereco(dto, fail, success) {
         try {
             const novoEndereco = await this.enderecoService.criarEndereco(dto);

@@ -1,40 +1,21 @@
-import dotenv from "dotenv";
-dotenv.config(); // DEVE estar ANTES de tudo
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
 
-import mysql, { Connection, QueryError } from 'mysql2';
+dotenv.config();
 
-console.log('🔧 Configurando conexão MySQL...');
-console.log('Host:', process.env.MYSQLHOST);
-console.log('Port:', process.env.MYSQLPORT);
-console.log('Database:', process.env.MYSQLDATABASE);
-console.log('User:', process.env.MYSQLUSER);
-
-const dbConfig = {
-    host: process.env.MYSQLHOST,
-    port: Number(process.env.MYSQLPORT),
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE
-};
-
-const mysqlConnection: Connection = mysql.createConnection(dbConfig);
-
-mysqlConnection.connect((err) => {
-    if (err) {
-        console.error('❌ Erro ao conectar ao banco de dados:', err);
-        throw err;
-    }
-    console.log('✅ Conexao bem-sucedida com o banco de dados MYSQL');
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,       
+  port: 4000,                      
+  user: process.env.DB_USER,       
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,   
+  ssl: {
+    minVersion: 'TLSv1.2',
+    rejectUnauthorized: true      
+  },
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-export function executarComandoSQL(query: string, valores: any[]): Promise<any> {
-    return new Promise((resolve, reject) => {
-        mysqlConnection.query(query, valores, (err, resultado) => {
-            if (err) {
-                console.error('❌ Erro ao executar a query:', err);
-                reject(err);
-            }
-            resolve(resultado);
-        });
-    });
-}
+export default pool;
