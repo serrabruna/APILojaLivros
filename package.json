@@ -1,34 +1,46 @@
 {
-  "name": "livraria-api",
-  "version": "1.0.0",
-  "description": "API Livraria com TypeScript",
-  "main": "dist/app.js",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/app.js",
-    "dev": "ts-node src/app.ts",
-    "postinstall": "npm run build"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  },
   "dependencies": {
-    "express": "^4.18.2",
+    "@types/node": "^24.10.1",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
-    "mysql2": "^3.6.5",
-    "dotenv": "^16.3.1",
-    "bcryptjs": "^2.4.3",
-    "swagger-ui-express": "^5.0.0",
-    "tsoa": "^5.1.1"
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.15.3",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.10.6",
-    "@types/cors": "^2.8.17",
     "@types/bcryptjs": "^2.4.6",
-    "@types/swagger-ui-express": "^4.1.6",
-    "typescript": "^5.3.3",
-    "ts-node": "^10.9.2"
-  }
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/swagger-ui-express": "^4.1.8",
+    "swagger-autogen": "^2.23.7",
+    "tsoa": "^6.6.0",
+    "typescript": "^5.9.3"
+  },
+  "name": "apilojalivros",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc --ignoreDeprecations 5.0",
+    "start": "node dist/app.js",
+    "dev": "ts-node src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serrabruna/APILojaLivros.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/serrabruna/APILojaLivros/issues"
+  },
+  "homepage": "https://github.com/serrabruna/APILojaLivros#readme"
 }
