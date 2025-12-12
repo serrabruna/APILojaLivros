@@ -4,6 +4,7 @@ exports.UsuarioRepository = void 0;
 const UsuarioModel_1 = require("../model/entity/UsuarioModel");
 const mysql_1 = require("../database/mysql");
 class UsuarioRepository {
+    static instance;
     constructor() { }
     static async getInstance() {
         if (!UsuarioRepository.instance) {

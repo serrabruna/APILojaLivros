@@ -6,6 +6,10 @@ const PedidoStatus_1 = require("../enums/PedidoStatus");
 const errors_1 = require("../utils/errors");
 const FormaPagamento_1 = require("../enums/FormaPagamento");
 class PedidoService {
+    pedidoRepository;
+    usuarioRepository;
+    enderecoRepository;
+    livroRepository;
     constructor(pedidoRepository, usuarioRepository, enderecoRepository, livroRepository) {
         this.pedidoRepository = pedidoRepository;
         this.usuarioRepository = usuarioRepository;

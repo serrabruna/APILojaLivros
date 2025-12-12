@@ -18,9 +18,7 @@ const tsoa_1 = require("tsoa");
 const BasicResponseDto_1 = require("../model/dto/BasicResponseDto");
 const CategoriaDto_1 = require("../model/dto/CategoriaDto");
 let CategoriaController = class CategoriaController {
-    constructor() {
-        this.categoriaService = new CategoriaService_1.CategoriaService();
-    }
+    categoriaService = new CategoriaService_1.CategoriaService();
     async novaCategoria(dto, fail, success) {
         try {
             const categoria = await this.categoriaService.novaCategoria(dto);

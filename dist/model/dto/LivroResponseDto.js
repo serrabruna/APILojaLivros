@@ -2,6 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LivroResponseDto = void 0;
 class LivroResponseDto {
+    id;
+    categoria_id;
+    titulo;
+    autor;
+    isbn;
+    preco;
+    estoque;
+    sinopse;
+    imageURL;
+    editora;
+    data_publicacao;
+    promocao;
     constructor(id, categoria_id, titulo, autor, isbn, preco, estoque, sinopse, imageURL, editora, data_publicacao, promocao = false) {
         this.id = id;
         this.categoria_id = categoria_id;

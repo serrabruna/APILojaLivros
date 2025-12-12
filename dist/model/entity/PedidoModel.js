@@ -2,6 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PedidoModel = void 0;
 class PedidoModel {
+    id;
+    usuario_id;
+    endereco_entrega_id;
+    data_pedido;
+    valor_total;
+    status_pedido;
+    forma_pagamento;
+    itens;
     constructor(usuario_id, endereco_entrega_id, data_pedido, valor_total, status_pedido, forma_pagamento, id, itens) {
         this.id = id;
         this.usuario_id = usuario_id;

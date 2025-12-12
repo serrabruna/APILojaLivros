@@ -4,6 +4,7 @@ exports.CategoriaRepository = void 0;
 const mysql_1 = require("../database/mysql");
 const CategoriaModel_1 = require("../model/entity/CategoriaModel");
 class CategoriaRepository {
+    static instance;
     constructor() {
         this.criarTable();
     }

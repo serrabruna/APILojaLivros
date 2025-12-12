@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PedidoResponseDto = exports.ItemPedidoResponseDto = void 0;
 class ItemPedidoResponseDto {
+    id;
+    livro_id;
+    quantidade;
+    preco_unitario_pago;
     constructor(model) {
         this.id = model.id;
         this.livro_id = model.livro_id;
@@ -11,6 +15,14 @@ class ItemPedidoResponseDto {
 }
 exports.ItemPedidoResponseDto = ItemPedidoResponseDto;
 class PedidoResponseDto {
+    id;
+    usuario_id;
+    endereco_entrega_id;
+    data_pedido;
+    valor_total;
+    status_pedido;
+    forma_pagamento;
+    itens;
     constructor(model, itensDto) {
         this.id = model.id;
         this.usuario_id = model.usuario_id;

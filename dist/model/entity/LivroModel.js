@@ -2,6 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LivroModel = void 0;
 class LivroModel {
+    id;
+    categoria_id;
+    titulo;
+    autor;
+    isbn;
+    preco;
+    estoque;
+    sinopse;
+    imageURL;
+    editora;
+    data_publicacao;
+    promocao;
     constructor(categoria_id, titulo, autor, isbn, preco, estoque, sinopse, imageURL, editora, data_publicacao, promocao, id) {
         this.id = id;
         this.categoria_id = categoria_id;

@@ -5,6 +5,7 @@ const PedidoRepository_1 = require("../repository/PedidoRepository");
 const errors_1 = require("../utils/errors");
 const PedidoStatus_1 = require("../enums/PedidoStatus");
 class ItemPedidoService {
+    pedidoRepository;
     constructor(pedidoRepository = PedidoRepository_1.PedidoRepository.getInstance()) {
         this.pedidoRepository = pedidoRepository;
     }

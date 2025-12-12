@@ -4,6 +4,7 @@ exports.LivroRepository = void 0;
 const mysql_1 = require("../database/mysql");
 const LivroModel_1 = require("../model/entity/LivroModel");
 class LivroRepository {
+    static instance;
     constructor() { }
     static async getInstance() {
         if (!this.instance) {
